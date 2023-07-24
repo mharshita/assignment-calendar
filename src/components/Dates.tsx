@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Day } from "../utils/types";
 import { MonthContext } from "../utils/context/monthContext";
+import events from "../utils/events.json";
 
 interface Props {
   weekNumber: number;
@@ -39,10 +40,26 @@ const Dates: React.FC<Props> = ({ weekNumber, weeks, setDates }) => {
     getDates();
   }, [selectedMonth, currentDay, currentMonth, currentYear, setDates]);
 
+  function isEvent(day: number) {
+    for (let i = 0; i < events.length; i++) {
+      if (day === events[i].date && selectedMonth === events[i].month) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   return (
-    <div className="flex bg-white rounded-b-lg">
+    <div className="flex bg-white">
       {weeks[weekNumber].map((week) => (
-        <div className="py-6 pb-8 w-[15%] text-center" key={week.day}>
+        <div
+          className={`w-[15%] text-center py-6 ${
+            isEvent(week.day)
+              ? "bg-gray-200 rounded-md font-semibold cursor-pointer px-2"
+              : ""
+          }`}
+          key={week.day}
+        >
           {week.day}
         </div>
       ))}

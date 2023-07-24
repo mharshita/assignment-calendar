@@ -34,8 +34,10 @@ const Card = () => {
             setWeekNumber={setWeekNumber}
             weeks={weeks}
           />
-          <Weekdays />
-          <Dates weekNumber={weekNumber} weeks={weeks} setDates={setDates} />
+          <div className="px-4 py-8 bg-white rounded-b-lg">
+            <Weekdays />
+            <Dates weekNumber={weekNumber} weeks={weeks} setDates={setDates} />
+          </div>
         </div>
       </div>
     </MonthProvider>
