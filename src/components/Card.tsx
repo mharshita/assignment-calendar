@@ -3,7 +3,7 @@ import { Day } from "../utils/types";
 import Header from "./Header";
 import MonthProvider from "../utils/context/monthContext";
 import Dates from "./Dates";
-import WeekdaysComponent from "./WeekdaysComponent";
+import Weekdays from "./Weekdays";
 
 const Card = () => {
   const [weeks, setWeeks] = useState<Day[][]>([[{ day: 1 }]]);
@@ -34,7 +34,7 @@ const Card = () => {
             setWeekNumber={setWeekNumber}
             weeks={weeks}
           />
-          <WeekdaysComponent />
+          <Weekdays />
           <Dates weekNumber={weekNumber} weeks={weeks} setDates={setDates} />
         </div>
       </div>
