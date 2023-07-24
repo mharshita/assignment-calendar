@@ -13,6 +13,7 @@ interface Props {
 const Header: React.FC<Props> = ({ weekNumber, setWeekNumber, weeks }) => {
   const { selectedMonth, setSelectedMonth } = useContext(MonthContext);
 
+  //getMonth() provides the month number starting from 0, i.e. for January, it will give 0
   const today: Date = new Date();
   const currentMonth: number = today.getMonth();
   const currentDay: number = today.getDate();
@@ -22,6 +23,10 @@ const Header: React.FC<Props> = ({ weekNumber, setWeekNumber, weeks }) => {
     if (weekNumber === 0) {
       setSelectedMonth(selectedMonth - 1);
 
+      //if the previous month is the current month (July), then there is need to calculate the
+      //number of weeks in that month since the month starts from today's date
+      //else, the week number to skip to on clicking previous button will be 4 as all other months
+      //will have 5 weeks (0 to 4)
       if (selectedMonth === currentMonth + 1) {
         let totalDays: number = new Date(
           currentYear,
@@ -29,6 +34,8 @@ const Header: React.FC<Props> = ({ weekNumber, setWeekNumber, weeks }) => {
           0
         ).getDate();
 
+        //totalDaysLeft is the total days that are remaining in the month, i.e. days from current
+        //date to the last day of month
         let totalDaysLeft: number = totalDays - currentDay + 1;
         let totalWeeks: number = Math.floor(totalDaysLeft / 7);
         let rem: number = totalDaysLeft % 7;
@@ -42,6 +49,8 @@ const Header: React.FC<Props> = ({ weekNumber, setWeekNumber, weeks }) => {
         setWeekNumber(4);
       }
     } else {
+      //if the user is not on the first week of the month then clicking previous button will navigate
+      //to simply previous week for the same month
       setWeekNumber(weekNumber - 1);
     }
   };

@@ -22,10 +22,13 @@ const Weekdays = () => {
         const nextDate: Date = new Date(today);
         nextDate.setDate(today.getDate() + i);
 
+        //getMonth() provides the month number starting from 0, i.e. for January, it will give 0
         const date: number = nextDate.getDate();
         const month: number = nextDate.getMonth();
         const year: number = nextDate.getFullYear();
 
+        //if the selectedMonth is same as the current month, then the start date of month will be
+        //today's date, else the start date will be 1
         if (selectedMonth === month) {
           nextSevenWeekDays.push(getWeekDayName(date, month, year));
         } else {
