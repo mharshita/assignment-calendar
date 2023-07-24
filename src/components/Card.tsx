@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Day } from "../utils/types";
-import { Weekdays } from "../utils/weekdays";
 import Header from "./Header";
 import MonthProvider from "../utils/context/monthContext";
 import Dates from "./Dates";
+import WeekdaysComponent from "./WeekdaysComponent";
 
 const Card = () => {
   const [weeks, setWeeks] = useState<Day[][]>([[{ day: 1 }]]);
@@ -27,20 +27,14 @@ const Card = () => {
 
   return (
     <MonthProvider>
-      <div>
-        <div>
+      <div className="w-[40vw] rounded-md">
+        <div className="w-auto">
           <Header
             weekNumber={weekNumber}
             setWeekNumber={setWeekNumber}
             weeks={weeks}
           />
-          <div className="weekday-container">
-            {Weekdays.map((day, index) => (
-              <div key={index} className="weekday">
-                {day}
-              </div>
-            ))}
-          </div>
+          <WeekdaysComponent />
           <Dates weekNumber={weekNumber} weeks={weeks} setDates={setDates} />
         </div>
       </div>

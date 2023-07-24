@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Months } from "../utils/months";
 import { Day } from "../utils/types";
 import { MonthContext } from "../utils/context/monthContext";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 interface Props {
   weekNumber: number;
@@ -55,19 +56,21 @@ const Header: React.FC<Props> = ({ weekNumber, setWeekNumber, weeks }) => {
   };
 
   return (
-    <div className="navigation-container">
+    <div className="flex justify-between bg-yellow-400 px-4 rounded-t-lg items-center">
       <button
         onClick={() => handlePrev()}
         disabled={weekNumber === 0 && selectedMonth === currentMonth}
+        className="border-0 outline-none cursor-pointer text-base rounded-full px-3 py-2"
       >
-        Prev
+        <FaArrowLeft />
       </button>
-      {Months[selectedMonth]}
+      <p className="font-extrabold text-3xl">{Months[selectedMonth]}</p>
       <button
         onClick={() => handleNext()}
         disabled={selectedMonth === 11 && weekNumber === weeks.length - 1}
+        className="border-0 outline-none cursor-pointer text-base rounded-full px-3 py-2"
       >
-        Next
+        <FaArrowRight />
       </button>
     </div>
   );

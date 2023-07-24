@@ -17,32 +17,34 @@ const Dates: React.FC<Props> = ({ weekNumber, weeks, setDates }) => {
   const currentYear: number = today.getFullYear();
 
   useEffect(() => {
-    getDates();
-  }, [selectedMonth]);
+    function getDates() {
+      let temp: Day[] = [];
 
-  function getDates() {
-    let temp: Day[] = [];
+      let totalDays: number = new Date(
+        currentYear,
+        selectedMonth + 1,
+        0
+      ).getDate();
 
-    let totalDays: number = new Date(
-      currentYear,
-      selectedMonth + 1,
-      0
-    ).getDate();
+      let startDate: number = selectedMonth === currentMonth ? currentDay : 1;
 
-    let startDate: number = selectedMonth === currentMonth ? currentDay : 1;
+      for (let i = startDate; i <= totalDays; i++) {
+        let date: Day = { day: i };
+        temp.push(date);
+      }
 
-    for (let i = startDate; i <= totalDays; i++) {
-      let date: Day = { day: i };
-      temp.push(date);
+      setDates(temp);
     }
 
-    setDates(temp);
-  }
+    getDates();
+  }, [selectedMonth, currentDay, currentMonth, currentYear, setDates]);
 
   return (
-    <div className="date-container">
+    <div className="flex bg-white rounded-b-lg">
       {weeks[weekNumber].map((week) => (
-        <div key={week.day}>{week.day}</div>
+        <div className="py-6 pb-8 w-[15%] text-center" key={week.day}>
+          {week.day}
+        </div>
       ))}
     </div>
   );

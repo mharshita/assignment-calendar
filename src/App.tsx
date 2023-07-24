@@ -1,10 +1,9 @@
 import React from "react";
-import "./App.css";
 import Card from "./components/Card";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="bg-blue-400 text-center h-[100vh] flex flex-col items-center justify-center">
       <Card />
     </div>
   );
