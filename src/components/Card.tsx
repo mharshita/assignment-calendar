@@ -27,7 +27,7 @@ const Card = () => {
 
   return (
     <MonthProvider>
-      <div className="w-[40vw] rounded-md">
+      <div className="w-[95vw] md:w-[40vw] rounded-md">
         <div className="w-auto">
           <Header
             weekNumber={weekNumber}
